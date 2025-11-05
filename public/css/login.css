@@ -1,0 +1,124 @@
+/* ===== Umumiy sozlamalar ===== */
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+font-family: "Poppins", sans-serif;
+}
+
+body {
+background: linear-gradient(135deg, #007bff, #6610f2);
+min-height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+/* ===== Karta (Login Box) ===== */
+.card {
+background: #ffffff;
+border-radius: 12px;
+box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+overflow: hidden;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+transform: translateY(-5px);
+box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== Card header ===== */
+.card-header {
+background: #0d6efd;
+color: white;
+text-align: center;
+font-weight: 600;
+font-size: 22px;
+padding: 15px 0;
+border-bottom: 3px solid #0b5ed7;
+}
+
+/* ===== Ichki kontent ===== */
+.card-body {
+padding: 30px;
+}
+
+/* ===== Inputlar ===== */
+.form-group {
+margin-bottom: 20px;
+}
+
+label {
+font-weight: 600;
+color: #333;
+margin-bottom: 6px;
+display: block;
+}
+
+input.form-control {
+width: 100%;
+padding: 12px 15px;
+border: 1px solid #ced4da;
+border-radius: 6px;
+font-size: 15px;
+transition: all 0.2s ease;
+}
+
+input.form-control:focus {
+border-color: #0d6efd;
+box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.2);
+outline: none;
+}
+h1 {
+font-size: 24px;
+}
+
+/* ===== Tugma (Login) ===== */
+.btn {
+width: 100%;
+display: inline-block;
+border: none;
+border-radius: 6px;
+padding: 12px;
+font-size: 16px;
+font-weight: 600;
+cursor: pointer;
+transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary {
+background: #0d6efd;
+color: white;
+}
+
+.btn-primary:hover {
+background: #0b5ed7;
+transform: translateY(-2px);
+}
+
+/* ===== Mobil uchun responsive ===== */
+@media (max-width: 600px) {
+body {
+background: #0d6efd;
+padding: 20px;
+}
+
+.card {
+box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-body {
+padding: 20px;
+}
+
+input.form-control {
+font-size: 14px;
+}
+
+.btn {
+font-size: 15px;
+padding: 10px;
+width: 100%;
+}
+}

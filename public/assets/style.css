@@ -1,0 +1,746 @@
+/* admin-style-v2.css - Dashboard uchun yakuniy CSS */
+
+/* ==========================================================
+   Global o'zgaruvchilar (CSS Variables)
+   ========================================================== */
+   :root {
+    --primary-color: #007bff;      /* Asosiy rang (ko'k) */
+    --secondary-color: #6c757d;    /* Ikkinchi darajali rang */
+    --success-color: #28a745;      /* Muvaffaqiyat (yashil) */
+    --danger-color: #dc3545;       /* Xato (qizil) */
+    --background-color: #f4f7f6;   /* Umumiy fon */
+    --card-background: #ffffff;    /* Kartochka fon */
+    --text-color: #333;
+
+    --sidebar-width: 200px;        /* Sidebar kengligi */
+    --sidebar-bg: #343a40;         /* Sidebar fon (qora) */
+    --sidebar-text: #adb5bd;       /* Sidebar matn rangi */
+    --sidebar-active: #ffffff;     /* Sidebar faol element matni */
+}
+
+/* ==========================================================
+   Umumiy uslublar
+   ========================================================== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+/* ==========================================================
+   1. Header (Tepadagi menyu)
+   ========================================================== */
+.admin-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.header-logo {
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.header-user {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#logout-btn {
+    background: var(--danger-color);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    margin-right: 20px;
+}
+#logout-btn:hover { 
+    background-color: #c82333; 
+}
+
+/* ==========================================================
+   Dashboard tuzilmasi (Sidebar + Kontent)
+   ========================================================== */
+.dashboard-container {
+    display: flex;
+    padding-top: 60px; /* Header balandligiga moslash */
+    min-height: 100vh;
+}
+
+/* 2. Sidebar (Chap menyu) */
+.admin-sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    /* Ekran balandligi - Header balandligi */
+    height: calc(100vh - 60px); 
+    position: fixed;
+    top: 60px; 
+    left: 0;
+    padding-top: 20px;
+    overflow-y: auto;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-header {
+    color: #495057;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px 15px 5px;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+
+.nav-item a {
+    display: block;
+    color: var(--sidebar-text);
+    text-decoration: none;
+    padding: 12px 15px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-item a i {
+    margin-right: 10px;
+}
+
+.nav-item a:hover {
+    background-color: #495057;
+    color: var(--sidebar-active);
+}
+
+.nav-item.active a {
+    background-color: var(--primary-color);
+    color: var(--sidebar-active);
+}
+
+/* 3. Asosiy Kontent */
+.admin-content {
+    margin-left: var(--sidebar-width); /* Sidebar uchun bo'shliq */
+    padding: 20px;
+    flex-grow: 1; 
+}
+
+/* ==========================================================
+   Kontent elementlari (Forma va Jadval)
+   ========================================================== */
+
+   .admin-main {
+    margin-top: 60px;
+   }
+.add-result-section, .results-list-section {
+    background-color: var(--card-background);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+#main-content h2, #main-content h3 {
+    color: var(--primary-color);
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+/* Forma uslubi */
+.admin-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding-bottom: 20px;
+}
+
+.form-group { 
+    display: flex; 
+    flex-direction: column; 
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: var(--secondary-color);
+}
+
+.form-group input { 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    font-size: 16px;
+}
+
+.btn-submit { 
+    grid-column: 1 / -1; 
+    background-color: var(--success-color); 
+    color: white; 
+    border: none;
+    padding: 12px 20px; 
+    border-radius: 5px; 
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+.btn-submit:hover { 
+    background-color: #1e7e34; 
+}
+
+/* Jadval uslubi */
+.table-responsive { 
+    overflow-x: auto; 
+}
+
+.admin-table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    margin-top: 15px;
+}
+
+.admin-table thead tr { 
+    background-color: var(--primary-color); 
+    color: white; 
+    text-align: left;
+}
+
+.admin-table th, .admin-table td { 
+    padding: 10px 15px; 
+    border: 1px solid #ddd; 
+    text-align: left;
+}
+
+.admin-table tbody tr:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+.admin-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Harakatlar tugmalari */
+.action-btns button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 5px;
+    font-size: 16px;
+    padding: 5px;
+    transition: color 0.3s;
+    color: var(--danger-color);
+}
+
+/* ==========================================================
+   MEDIA QUERIES (Mobil moslashuvchanlik)
+   ========================================================== */
+
+@media (max-width: 768px) {
+    
+    /* 1. Umumiy Dashboard tuzilmasini o'zgartirish */
+    .dashboard-container {
+        padding-top: 60px;
+        flex-direction: column; 
+    }
+
+    .admin-header {
+        padding: 10px 15px;
+    }
+    
+    /* 2. Sidebar (Chap menyuni gorizontalga o'tkazish) */
+    .admin-sidebar {
+        width: 100%; 
+        height: auto; 
+        position: static; 
+        top: auto; 
+        padding-top: 0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .sidebar-nav ul {
+        display: flex;
+        flex-wrap: wrap; 
+        justify-content: space-around;
+        padding: 5px 0;
+    }
+    
+    .nav-header {
+        display: none; 
+    }
+    
+    .nav-item {
+        flex: 1 1 auto; 
+        min-width: 80px; 
+        text-align: center;
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-item:last-child {
+        border-right: none;
+    }
+
+    .nav-item a {
+        padding: 8px 5px;
+        font-size: 12px;
+    }
+
+    .nav-item a i {
+        display: block; 
+        margin: 0 auto 3px;
+        font-size: 16px;
+    }
+
+    /* 3. Asosiy Kontent */
+    .admin-content {
+        margin-left: 0; 
+        padding: 15px;
+    }
+    
+    /* 4. Forma elementlari */
+    .admin-form {
+        grid-template-columns: 1fr; 
+    }
+    
+    /* 5. Jadvalni mobilga moslash (Data-label uslubi) */
+    .admin-table thead {
+        display: none; 
+    }
+    
+    .admin-table, .admin-table tbody, .admin-table tr, .admin-table td {
+        display: block; 
+        width: 100%;
+    }
+
+    .admin-table tr {
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+    
+    .admin-table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    /* data-label orqali sarlavhalarni ko'rsatish */
+    .admin-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 45%;
+        padding-left: 15px;
+        font-weight: bold;
+        text-align: left;
+        color: var(--secondary-color);
+    }
+    
+    .action-btns {
+        text-align: left !important;
+    }
+}
+
+/* admin-style.css - Yangi oddiy Admin Panel tuzilmasi uchun */
+
+/* ==========================================================
+   Global o'zgaruvchilar (CSS Variables)
+   ========================================================== */
+   :root {
+    --primary-color: #007bff;      /* Asosiy rang (ko'k) */
+    --secondary-color: #6c757d;    /* Ikkinchi darajali rang */
+    --success-color: #28a745;      /* Muvaffaqiyat (yashil) */
+    --danger-color: #dc3545;       /* Xato (qizil) */
+    --background-color: #f4f7f6;   /* Umumiy fon */
+    --card-background: #ffffff;    /* Kartochka fon */
+    --text-color: #333;
+}
+
+/* ==========================================================
+   Umumiy uslublar va Konteyner
+   ========================================================== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.container {
+    /* HTML'da ishlatilgan konteyner uslubi */
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px; /* Kichik ekranlarda chekkadan yopishmasligi uchun */
+}
+
+/* ==========================================================
+   1. Header (Tepadagi sarlavha)
+   ========================================================== */
+.admin-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.admin-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+#logout-btn {
+    background: var(--danger-color);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+#logout-btn:hover {
+    background-color: #c82333;
+}
+
+/* ==========================================================
+   2. Asosiy Kontent (Main)
+   ========================================================== */
+.admin-main {
+    padding: 30px 0; /* Yuqori va pastdan ko'proq bo'shliq */
+}
+
+section {
+    background-color: var(--card-background);
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+}
+
+section h2 {
+    color: var(--primary-color);
+    margin-top: 0;
+    border-bottom: 2px solid var(--background-color);
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+/* Forma elementlari */
+.admin-form {
+    display: grid;
+    /* 3 ustunli layout */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 7px;
+    color: var(--text-color);
+}
+
+.form-group input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.btn-submit {
+    grid-column: 1 / -1; /* Tugmani to'liq kenglikda qilish */
+    background-color: var(--success-color);
+    color: white;
+    border: none;
+    padding: 14px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    background-color: #1e7e34;
+}
+
+/* Jadval uslubi */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.admin-table thead tr {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: left;
+}
+
+.admin-table th, .admin-table td {
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
+}
+
+.admin-table th:last-child {
+    text-align: center; /* Harakatlar ustunini markazga surish */
+}
+
+.admin-table tbody tr:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+.admin-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Harakatlar tugmalari */
+.action-btns {
+    text-align: center;
+    white-space: nowrap; /* Tugmalar yonma-yon turishi uchun */
+}
+
+.action-btns button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin: 0 5px;
+    font-size: 18px;
+    padding: 5px;
+    transition: color 0.3s;
+    color: var(--danger-color);
+}
+
+.action-btns button:hover {
+    color: #a71d2a;
+}
+
+/* ==========================================================
+   MEDIA QUERIES (Mobil moslashuvchanlik)
+   ========================================================== */
+
+@media (max-width: 768px) {
+    
+    .admin-header h1 {
+        font-size: 20px;
+    }
+    
+    .admin-header .container {
+        /* Chiqish tugmasi va sarlavha sig'masa, ustma-ust tushishi uchun */
+        flex-wrap: wrap; 
+        justify-content: center;
+        text-align: center;
+    }
+
+    .admin-header h1 {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .admin-main {
+        padding: 20px 0;
+    }
+
+    /* Forma elementlari 1 ustunli bo'ladi */
+    .admin-form {
+        grid-template-columns: 1fr; 
+    }
+    
+    section {
+        padding: 15px;
+    }
+
+    section h2 {
+        font-size: 20px;
+        padding-bottom: 10px;
+    }
+
+    /* Jadvalni mobilga moslash (Data-label uslubi) */
+    .admin-table thead {
+        display: none; 
+    }
+    
+    .admin-table, .admin-table tbody, .admin-table tr, .admin-table td {
+        display: block; 
+        width: 100%;
+    }
+
+    .admin-table tr {
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 5px 0;
+    }
+    
+    .admin-table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        border: none;
+    }
+
+    .admin-table td::before {
+        /* HTML'dagi ma'lumotlarni ko'rsatish */
+        /* Eslatma: HTML'dagi <td> elementlariga data-label atributini qo'shish kerak */
+        /* Masalan: <td data-label="Ism">...</td> */
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 45%;
+        padding-left: 15px;
+        font-weight: bold;
+        text-align: left;
+        color: var(--secondary-color);
+    }
+    
+    .action-btns {
+        text-align: left !important;
+        padding-left: 15px;
+    }
+}
+
+/* Yangi elementlar uchun uslublar */
+
+.btn-add-new {
+    /* Asosiy ko'rinish */
+    display: inline-block; /* Kenglikni matnga moslash */
+    background-color: rgb(27, 216, 93); /* Ko'k rang */
+    color: white; /* Matn rangi */
+    text-decoration: none; /* Tagidagi chiziqni olib tashlash */
+    font-weight: bold;
+    font-size: 16px;
+    
+    /* Hajm va shakl */
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 2px solid rgb(27, 216, 93); /* Ramka (chegara) */
+    
+    /* Animatsiya */
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    
+    /* Yuqori va pastki qismlardan biroz ajratish (ixtiyoriy) */
+    margin-bottom: 20px; 
+}
+
+.btn-add-new:hover {
+    /* Sichqoncha ustiga kelganda */
+    background-color: #0056b3; /* To'qroq ko'k */
+    border-color: #0056b3;
+}
+
+.btn-add-new:active {
+    /* Bosilganda */
+    transform: translateY(1px); /* Pastga biroz surish effekti */
+}
+
+/* Agar u jadval ustida bo'lsa, uni to'g'irlash uchun (ixtiyoriy) */
+.results-list-section .btn-add-new {
+    margin-bottom: 15px;
+}
+
+.show_res {
+    justify-content: space-between;
+    display: flex;
+    text-align: center;
+}
+/* admin-style.css ichida: Harakatlar tugmalari qismini yangilash */
+
+/* Umumiy Harakatlar ustunining uslubi */
+.action-btns {
+    /* Eski text-align: center o'rniga Flexbox ishlatamiz */
+    display: flex; 
+    justify-content: center; /* Gorizontal markazga joylash */
+    align-items: center;     /* Vertikal markazga joylash (agar balandlik bo'lsa) */
+    
+    white-space: nowrap; 
+    min-width: 150px; /* Minimal kenglikni biroz oshirdik, matn sig'ishi uchun */
+    
+    /* Agar flexbox ishlamasa, zaxira sifatida */
+    text-align: center; 
+}
+
+/* Har bir tugma uchun asosiy uslub (matn va ikonka yonma-yon) */
+.action-btns .btn-action {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin: 0 5px; /* Tugmalar orasidagi bo'shliq */
+    font-size: 16px; 
+    padding: 5px 10px; /* Bosish uchun qulayroq joy berish */
+    transition: color 0.3s, transform 0.2s;
+    /* Tugmani o'zini joylashtirish uchun qo'shimcha stil */
+    display: inline-flex;
+    align-items: center;
+    gap: 5px; /* Matn va ikonka orasidagi bo'shliq */
+}
+
+/* Rang uslublarini o'zgartirish shart emas (oldingidek qoladi) */
+.action-btns .btn-edit {
+    color: var(--primary-color);
+}
+
+.action-btns .btn-delete {
+    color: var(--danger-color); 
+}
+
+/* ==========================================================
+   MEDIA QUERIES ICHIDAGI YANGILANISH (Mobil uchun)
+   ========================================================== */
+
+@media (max-width: 768px) {
+    /* Mobil ekranda Harakatlar tugmasini to'g'rilash */
+    .action-btns {
+        /* Mobil: Chap tomondan boshlash uchun flex markazlashni o'chiramiz */
+        display: block; 
+        text-align: left !important;
+        padding-left: 15px;
+    }
+    
+    /* Mobil ekranda tugmalar orasidagi bo'shliqni kengaytirish */
+    .action-btns .btn-action {
+        margin: 5px 10px 5px 0; /* Ustma-ust tushishi uchun tepa/pastdan bo'shliq qo'shamiz */
+    }
+}

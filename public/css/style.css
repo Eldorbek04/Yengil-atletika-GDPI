@@ -1,0 +1,887 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Arial', sans-serif; 
+  line-height: 1.6;
+  background-color: #f8f9fa; 
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.container_h1 {
+  color: #0d6efd;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  margin: 0 auto;
+  justify-content: center;
+  padding: 8px;
+}
+
+.container_h1:hover {
+  color: #152ae4c3;
+}
+/* ========== Navbar ========== */
+
+.navbar {
+  background-color: #0d6efd; /* Primary Blue */
+  color: white;
+  padding: 10px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar__logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none; /* In case the logo is a link */
+}
+
+.navbar__logo img {
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid white; /* Logo border */
+}
+
+.navbar__logo span {
+  font-size: 18px; 
+  font-weight: bold;
+  color: white;
+  letter-spacing: 1px;
+}
+
+.navbar__logo span b {
+  font-weight: 700;
+}
+
+.navbar__toggle {
+  display: none;
+  font-size: 30px; /* Slightly larger */
+  cursor: pointer;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  line-height: 1; /* Ensures correct icon alignment */
+}
+
+.navbar__menu {
+  display: flex;
+  align-items: center;
+}
+
+.navbar__links {
+  list-style: none;
+  display: flex;
+  gap: 25px; /* Increased gap */
+}
+
+.navbar__links li a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600; /* Medium bold */
+  padding: 8px 12px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  border-radius: 5px;
+}
+
+.navbar__links li a:hover {
+  color: #0d6efd; /* Blue text on hover */
+  background-color: white; /* White background on hover */
+}
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tugma */
+.dropbtn {
+  background-color: transparent; /* Makes it blend with navbar */
+  color: white;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+}
+
+/* Dropdown tarkibi (yashirin holatda) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #0d6efd; /* White dropdown background */
+  min-width: 180px; /* Slightly wider */
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Ensure it's above other elements */
+  border-radius: 5px;
+  top: 100%; /* Positioning below the button */
+  left: 0;
+  overflow: hidden; /* For rounded corners on links */
+}
+
+/* Havolalar */
+.dropdown-content a {
+  color: #212529; /* Dark text */
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  font-weight: 400; /* Normal weight */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover effekti */
+.dropdown-content a:hover {
+  background-color: #e9ecef; /* Light gray hover */
+  color: #0d6efd; /* Primary blue text on hover */
+}
+
+/* Hover qilinganda ochilsin */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: white; /* White background on hover */
+  color: #0d6efd; /* Primary blue text on hover */
+}
+
+/* ... (Mavjud CSS kodingizning 768px media so'rovigacha bo'lgan qismi) ... */
+
+@media (max-width: 768px) {
+
+  .dropdown {
+      width: 100%;
+  }
+
+  #content_a {
+    color: black;
+  }
+
+  .dropbtn {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background-color: transparent; /* Navbar rangiga mos bo'lsin */
+      color: rgb(0, 0, 0);
+      padding: 12px 20px;
+      margin: 5px 0;
+      border-radius: 0;
+  }
+  
+  .dropdown-content {
+      /* Dropdown tarkibini avval yashirish */
+      display: none; 
+      position: static; /* Mobil menyu ichida oqimga tushadi */
+      min-width: 100%;
+      box-shadow: none;
+      border-radius: 0;
+      background-color: rgba(255, 255, 255, 0.1); /* Kichik shaffoflik */
+  }
+
+  .dropdown-content.show {
+      display: block; /* Bosish orqali ochiladi */
+  }
+
+  .dropdown-content a {
+      padding-left: 30px; 
+      background-color: transparent;
+      color: white;
+      border-bottom: 1px solid #ffffff33;
+  }
+  
+  .dropdown-content a:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+      color: #ffc107;
+  }
+
+}
+
+
+/* ========================== */
+/* Jadval va Paginatsiya CSS */
+/* ========================== */
+
+section {
+  margin-top: 40px;
+  padding-bottom: 60px; /* Add some space before the footer */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden; /* For rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+thead {
+  background-color: #0d6efd;
+  color: white;
+}
+
+th,
+td {
+  padding: 14px 20px;
+  border-bottom: 1px solid #e2e8f0;
+  font-weight: 600;
+}
+
+tbody td {
+  text-align: center;
+  font-weight: 500;
+  color: #343a40;
+}
+
+th:first-child,
+td:first-child {
+  width: 60px;
+  text-align: center;
+  color: #0d6efd;
+}
+
+td:last-child {
+  text-align: center; /* Changed from right to center for "Natija" column */
+  color: #dc3545; /* Red color for results */
+  font-weight: 700;
+}
+
+tbody tr:hover {
+  background-color: #e3f2fd;
+  cursor: default;
+}
+
+/* Paginatsiya */
+.pagination {
+  margin-top: 30px; /* Increased margin */
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+#center {
+  text-align: center;
+  color: #0d6efd; /* Blue color for centered result value */
+  font-weight: 700;
+}
+.pagination button {
+  background-color: #0d6efd;
+  border: none;
+  color: white;
+  padding: 10px 16px; /* Slightly larger padding */
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pagination button:hover {
+  background-color: #084ecf;
+  transform: translateY(-1px); /* Subtle lift effect */
+}
+
+.pagination button.active {
+  background-color: #084ecf;
+  cursor: default;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .navbar__logo span {
+    font-size: 1px; /* Smaller logo text */
+  }
+
+  .navbar__toggle {
+    display: block;
+  }
+
+  .navbar__menu {
+    position: fixed;
+    top: 65px; /* Adjust if navbar height changes */
+    left: -200px;
+    width: 200px; /* Slightly wider mobile menu */
+    height: calc(100vh - 65px); /* Full height minus navbar */
+    background-color: #0d6efd;
+    flex-direction: column;
+    gap: 0; /* Remove gap from menu container */
+    padding: 20px 0; /* Adjust padding */
+    transition: left 0.3s ease-in-out;
+    z-index: 1001;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    align-items: flex-start;
+  }
+
+  .navbar__menu.active {
+    left: 0;
+  }
+
+  .navbar__links {
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+  }
+
+  .navbar__links li {
+    width: 100%;
+  }
+
+  .navbar__links li a {
+    display: block;
+    padding: 12px 20px;
+    margin: 5px 0;
+    width: 100%;
+  }
+
+  .dropdown {
+    width: 100%;
+  }
+
+  .dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background-color: white;
+    color: #0d6efd;
+    padding: 12px 20px;
+    margin: 5px 0;
+  }
+
+  .dropdown-content {
+    position: static; /* Stack dropdown items normally */
+    min-width: auto;
+    width: 100%;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .dropdown-content a {
+    padding-left: 30px; /* Indent dropdown links */
+    background-color: #f1f1f1;
+    color: #0d6efd;
+    border-bottom: 1px solid #dee2e6;
+  }
+
+  .pagination {
+    gap: 8px;
+  }
+
+  .pagination button {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 10px;
+  }
+
+
+  .navbar__logo span {
+    font-size: 16px;
+  }
+
+
+  .pagination button {
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+}
+
+/* <!--  26 Oktyabir 2025 Rayimjonov Eldorbek --> */
+
+/* ========== Kichik Telefonlar (480px va undan past) ========== */
+@media (max-width: 480px) {
+  /* Navbar stili (ixtiyoriy, agar sizning navbar__logo qoidangiz bo'lsa) */
+  .navbar__logo span {
+      font-size: 16px;
+  }
+  
+}
+
+/* ======================
+      FOOTER QISMI 
+========================== */
+
+
+.page-wrapper {
+  min-height: 100vh; /* Use vh for full viewport height */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Asosiy kontent */
+.content {
+  flex: 1;
+}
+
+footer {
+  margin-top: 40px; /* Increased margin to separate from content */
+  background-color: #0d6efd;
+  color: white;
+  padding: 30px 0 10px; /* Adjusted padding */
+  text-align: center;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.footer-box {
+  flex: 1 1 250px;
+  margin: 20px;
+  padding: 0 10px;
+  text-align: left; /* Default text alignment */
+}
+
+.footer-box h3 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  border-bottom: 2px solid #ffffff33;
+  padding-bottom: 10px;
+}
+
+.footer-box p,
+.footer-box a {
+  color: white;
+  font-size: 16px;
+  text-decoration: none;
+  margin: 8px 0;
+  display: block;
+  transition: all 0.3s ease;
+}
+
+.footer-box a:hover {
+  color: #ffc107; /* Yellow/Orange hover color */
+}
+
+.social-icons {
+  margin-top: 20px;
+}
+
+.social-icons a {
+  font-size: 24px; /* Larger icons */
+  margin-right: 15px;
+  color: white;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #ffc107;
+  transform: translateY(-2px); /* Lift effect on hover */
+}
+
+.footer-bottom {
+  text-align: center;
+  padding: 20px 0;
+  font-size: 14px;
+  border-top: 1px solid #ffffff33;
+  margin-top: 20px;
+  color: #ddd;
+}
+
+.footer-bottom a {
+  color: #ddd;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.footer-bottom a:hover {
+  color: #ffc107;
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-box {
+    margin: 10px 0;
+    text-align: center; /* Center align content in mobile footer boxes */
+  }
+
+  .footer-box h3 {
+    border-bottom: none; /* Remove bottom border in mobile */
+    padding-bottom: 0;
+  }
+}
+
+/* Sahifalash konteynerining umumiy uslubi */
+.pagination-container {
+  display: flex;
+  justify-content: flex-end; /* Sahifalashni o'ngga joylashtirish */
+  margin-top: 20px;
+}
+
+/* <!--  26 Oktyabir 2025 Rayimjonov Eldorbek --> */
+/* Pagination ul elementining uslubi */
+.pagination {
+  list-style: none; /* Standart markerlarni olib tashlash */
+  padding: 0;
+  margin: 0;
+  display: flex; /* Sahifa elementlarini bir qatorga joylash */
+}
+
+/* Har bir sahifa elementining uslubi (li) */
+.page-item {
+  margin: 0 4px; /* Tugmalar orasidagi bo'shliq */
+}
+
+/* Sahifa havolalarining (a) uslubi */
+.page-link {
+  display: block;
+  padding: 8px 12px;
+  text-decoration: none; /* Tagidagi chiziqni olib tashlash */
+  color: #007bff; /* Havola rangi */
+  border: 1px solid #dee2e6; /* Chegara */
+  border-radius: 4px; /* Yumaloq burchaklar */
+  transition: all 0.3s ease; /* Yumshoq o'tish effekti */
+  background-color: #fff;
+}
+
+/* Havola ustiga sichqoncha olib borilganda (hover) */
+.page-link:hover {
+  background-color: #e9ecef;
+  border-color: #007bff;
+}
+
+/* Faol sahifa (active) uslubi */
+.page-item.active .page-link {
+  background-color: #007bff; /* Ko'k fon */
+  color: #fff; /* Oq matn */
+  border-color: #007bff;
+}
+
+/* Faol tugma ustiga sichqoncha olib borilganda (hover) */
+.page-item.active .page-link:hover {
+  background-color: #0056b3; /* To'qroq ko'k */
+  border-color: #0056b3;
+}
+
+/* O'chirilgan (disabled) tugmalar uslubi (Oldingi/Keyingi) */
+.page-item.disabled .page-link {
+  color: #6c757d;
+  pointer-events: none; /* Klik qilishni o'chirish */
+  background-color: #fff;
+  border-color: #dee2e6;
+  opacity: 0.6; /* Xiralashtirish */
+}
+
+/* Asosiy kartani o'rab turuvchi konteyner (Agar bir nechta kartani yonma-yon qo'ymoqchi bo'lsangiz kerak) */
+.news-card-wrapper {
+  /* Bu kartaning kengligini belgilaydi */
+  max-width: 350px; 
+  margin: 20px;
+  display: inline-block; /* Kartalarni yonma-yon qo'yish uchun */
+}
+
+/* Asosiy karta elementi */
+.news-card {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px; /* Yumaloq burchaklar */
+  overflow: hidden; /* Rasmni burchaklardan chiqarmaslik uchun */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Yengil soya effekti */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%; /* Agar wrapper ishlatilgan bo'lsa, to'liq balandlikni egallash uchun */
+}
+
+/* Karta ustiga sichqoncha olib borilganda (Hover) */
+.news-card:hover {
+  transform: translateY(-5px); /* Biroz yuqoriga ko'tarish */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Soya kuchaytiriladi */
+}
+
+/* Rasm konteyneri */
+.news-card-image-box {
+  width: 100%;
+  height: 200px; /* Rasm balandligini belgilash */
+  overflow: hidden;
+}
+
+/* Rasmning o'zi */
+.news-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Rasmni konteynerga sig'dirish, buzmasdan */
+  transition: transform 0.5s ease;
+}
+
+/* Rasm ustiga hover effekti */
+.news-card:hover .news-card-image {
+  transform: scale(1.05); /* Biroz kattalashtirish */
+}
+
+/* Kontent maydoni */
+.news-card-content {
+  padding: 15px;
+}
+
+/* Sarlavha */
+.news-card-title {
+  font-size: 1.3rem;
+  margin-top: 0;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+/* Sarlavha havolasi */
+.news-card-link {
+  text-decoration: none;
+  color: #333; /* To'q rang */
+  transition: color 0.3s ease;
+}
+
+.news-card-link:hover {
+  color: #007bff; /* Ko'k rangga o'zgartirish */
+}
+
+/* Matn / Tavsif */
+.news-card-text {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 15px;
+  /* Matnni 3 qatordan keyin kesib tashlash */
+  display: -webkit-box;
+  /* -webkit-line-clamp: 3; */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Vakt va Meta ma'lumot joyi */
+.news-card-footer {
+  border-top: 1px solid #f1f1f1;
+  padding-top: 10px;
+  font-size: 0.9rem;
+  color: #999; /* Xira rang */
+}
+
+/* Vakt ikonka joyi */
+.news-card-date i {
+  margin-right: 5px;
+}
+/* ///////////////////////// */
+/* <!--  26 Oktyabir 2025 Rayimjonov Eldorbek --> */
+/* Global reset */
+
+* {
+  text-decoration: none;
+}
+
+/* Container */
+.max-w-7xl {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 40px 20px;
+}
+
+/* Title */
+.max-w-7xl h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* Paragraph */
+.max-w-7xl p {
+  text-align: center;
+  color: #6b7280;
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Grid styles */
+.grid {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .md\:grid-cols-2 {
+      grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-4 {
+      grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Card styles */
+.flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.flex:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Icon box */
+.icon-box {
+  padding: 16px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.flex:hover .icon-box {
+  transform: scale(1.1);
+}
+
+/* Individual icon colors */
+.bg-indigo-500 { background-color: #6366f1; }
+.bg-amber-500 { background-color: #f59e0b; }
+.bg-emerald-500 { background-color: #10b981; }
+.bg-rose-500 { background-color: #f43f5e; }
+
+/* Icon inside */
+.icon-box i {
+  width: 32px;
+  height: 32px;
+  color: white;
+}
+
+/* Card title */
+.flex h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.flex:hover h3 {
+  color: #4f46e5;
+}
+
+/* Card description */
+.flex p {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+/* Telegram Button */
+.mt-16 {
+  margin-top: 4rem;
+  text-align: center;
+}
+
+.mt-16 a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #6366f1;
+  color: #fff;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
+  transition: background-color 0.3s ease;
+}
+
+.mt-16 a:hover {
+  background-color: #4338ca;
+}
+
+.mt-16 i {
+  width: 20px;
+  height: 20px;
+}
+
+
+
+@media (max-width: 768px) {
+  table {
+    border: 0;
+    box-shadow: none;
+    min-width: unset;
+  }
+
+  thead {
+    display: none; /* Sarlavhani yashiramiz */
+  }
+
+  tbody tr {
+    display: block;
+    margin-bottom: 15px;
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    padding: 10px 0;
+  }
+
+  tbody td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: right;
+    padding: 10px 16px;
+    border: none;
+    border-bottom: 1px solid #f1f3f5;
+    font-size: 15px;
+  }
+
+  tbody td:last-child {
+    border-bottom: none;
+  }
+
+  tbody td::before {
+    content: attr(data-label);
+    font-weight: 700;
+    text-transform: capitalize;
+    color: #0d6efd;
+    text-align: left;
+  }
+}
+/* <!--  26 Oktyabir 2025 Rayimjonov Eldorbek --> */
