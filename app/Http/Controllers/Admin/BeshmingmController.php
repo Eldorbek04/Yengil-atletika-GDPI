@@ -40,8 +40,13 @@ class BeshmingmController extends Controller
             'family_name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\-\']+$/u'],
             'middle_name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\-\']+$/u'],
             'orientation' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\-\']+$/u'],
+            'gender'        => ['required', 'string', 'in:male,female'], // Jinsi majburiy
             'group' => 'required|string|max:50',
-            'result' => 'required|numeric|min:0.01',
+            'result' => [
+                'required',
+                'string',
+                'regex:/^[0-9.,]+$/',
+            ],
         ]);
 
         // Xabar yuboriladigan ma'lumotlar
@@ -78,8 +83,13 @@ class BeshmingmController extends Controller
             'family_name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\-\']+$/u'],
             'middle_name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\-\']+$/u'],
             'orientation' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\-\']+$/u'],
+            'gender'        => ['required', 'string', 'in:male,female'], // Jinsi majburiy
             'group' => 'required|string|max:50',
-            'result' => 'required|numeric|min:0.01',
+            'result' => [
+                'required',
+                'string',
+                'regex:/^[0-9.,]+$/',
+            ],
         ]);
 
         $beshmingm = BeshmingmModel::find($id);
@@ -87,6 +97,7 @@ class BeshmingmController extends Controller
         $beshmingm->family_name = $request->family_name;
         $beshmingm->middle_name = $request->middle_name;
         $beshmingm->orientation = $request->orientation;
+        $beshmingm->gender = $request->gender; // gender maydonini yangilash
         $beshmingm->group = $request->group;
         $beshmingm->result = $request->result;
         $beshmingm->save();

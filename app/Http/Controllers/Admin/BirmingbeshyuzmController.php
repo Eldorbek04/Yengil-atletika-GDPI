@@ -40,8 +40,13 @@ class BirmingbeshyuzmController extends Controller
             'family_name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\-\']+$/u'],
             'middle_name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\-\']+$/u'],
             'orientation' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\-\']+$/u'],
+            'gender'        => ['required', 'string', 'in:male,female'], // Jinsi majburiy
             'group' => 'required|string|max:50',
-            'result' => 'required|numeric|min:0.01',
+            'result' => [
+                'required',
+                'string',
+                'regex:/^[0-9.,]+$/',
+            ],
         ]);
 
         // Xabar yuboriladigan ma'lumotlar
@@ -78,8 +83,13 @@ class BirmingbeshyuzmController extends Controller
             'family_name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\-\']+$/u'],
             'middle_name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\-\']+$/u'],
             'orientation' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\-\']+$/u'],
+            'gender'        => ['required', 'string', 'in:male,female'], // Jinsi majburiy
             'group' => 'required|string|max:50',
-            'result' => 'required|numeric|min:0.01',
+            'result' => [
+                'required',
+                'string',
+                'regex:/^[0-9.,]+$/',
+            ],
         ]);
 
         $birmingbeshyuzm = Birmingbeshyuzmmodel::find($id);
@@ -87,6 +97,7 @@ class BirmingbeshyuzmController extends Controller
         $birmingbeshyuzm->family_name = $request->family_name;
         $birmingbeshyuzm->middle_name = $request->middle_name;
         $birmingbeshyuzm->orientation = $request->orientation;
+        $birmingbeshyuzm->gender = $request->gender; // gender maydonini yangilash
         $birmingbeshyuzm->group = $request->group;
         $birmingbeshyuzm->result = $request->result;
         $birmingbeshyuzm->save();

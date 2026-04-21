@@ -15,6 +15,10 @@ return new class extends Migration {
             $table->string('name');
             $table->string('family_name');
             $table->string('middle_name')->nullable();
+            
+            // Jinsni saqlash uchun ustunni shu yerga qo'shing:
+            $table->enum('gender', ['male', 'female'])->default('male');
+            
             $table->string('orientation')->nullable();
             $table->string('group');
             $table->decimal('result', 5, 2);

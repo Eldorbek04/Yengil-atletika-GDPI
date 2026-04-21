@@ -39,8 +39,13 @@ class BalandlikkasakrashController extends Controller
             'family_name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\-\']+$/u'],
             'middle_name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\-\']+$/u'],
             'orientation' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\-\']+$/u'],
+            'gender'        => ['required', 'string', 'in:male,female'], // Jinsi majburiy
             'group' => 'required|string|max:50',
-            'result' => 'required|numeric|min:0.01',
+            'result' => [
+                'required',
+                'string',
+                'regex:/^[0-9.,]+$/',
+            ],
         ]);
 
         $requestData = $validatedData;
@@ -75,8 +80,13 @@ class BalandlikkasakrashController extends Controller
             'family_name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\-\']+$/u'],
             'middle_name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\-\']+$/u'],
             'orientation' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\-\']+$/u'],
+            'gender'        => ['required', 'string', 'in:male,female'], // Jinsi majburiy
             'group' => 'required|string|max:50',
-            'result' => 'required|numeric|min:0.01',
+            'result' => [
+                'required',
+                'string',
+                'regex:/^[0-9.,]+$/',
+            ],
         ]);
 
         $balandlikkasakrash = BalandlikkasakrashModel::find($id);
@@ -84,6 +94,7 @@ class BalandlikkasakrashController extends Controller
         $balandlikkasakrash->family_name = $request->family_name;
         $balandlikkasakrash->middle_name = $request->middle_name;
         $balandlikkasakrash->orientation = $request->orientation;
+        $balandlikkasakrash->gender = $request->gender; // gender maydonini yangilash
         $balandlikkasakrash->group = $request->group;
         $balandlikkasakrash->result = $request->result;
         $balandlikkasakrash->save();

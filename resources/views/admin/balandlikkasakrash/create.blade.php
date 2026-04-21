@@ -79,6 +79,20 @@
                 <input name="result" id="result" type="text" placeholder="Natijani kiriting" required>
             </div>
 
+              <!-- //Jinsi -->
+              <div class="form-group">
+                <label for="gender">Jinsi:
+                    @if ($errors->has('gender'))
+                        <span style="color: red;">Jinsini tanlang</span>
+                    @endif
+                </label>
+                <select name="gender" id="gender" class="form-control" required>
+                    <option value="" disabled selected>Tanlang...</option>
+                    <option value="male">O'g'il bola</option>
+                    <option value="female">Qiz bola</option>
+                </select>
+            </div>
+
             <button type="submit" class="btn-submit">Natijani Qo'shish</button>
         </form>
     </section>

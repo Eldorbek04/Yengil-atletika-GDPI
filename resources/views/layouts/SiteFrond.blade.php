@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GDPI - @yield('title')</title>
     <link rel="icon" type="image/png" href="{{ asset('./image/image.png') }}">
-    <link rel="stylesheet" href="{{ asset('./css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyP7o1+0R4kNYFk1YI2B5w2mJt0B/r2a4R/j5l9A/9w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -73,9 +73,9 @@
 
                 <div class="footer-box">
                     <h3>@lang('words.foydali_havolalar')</h3>
-                    <a href="#">@lang('words.joylashuv')</a>
-                    <a href="#">@lang('words.telegram')</a>
-                    <a href="#">@lang('words.Instagram')</a>
+                    <a href="https://maps.app.goo.gl/1SNTvdRMgoSwpqj37">@lang('words.joylashuv')</a>
+                    <a href="https://t.me/gulDPIuz">@lang('words.telegram')</a>
+                    <a href="http://instagram.com/guliston_pedagogika_instituti">@lang('words.Instagram')</a>
                     <!-- <a href="#">Aloqa</a> -->
                 </div>
 

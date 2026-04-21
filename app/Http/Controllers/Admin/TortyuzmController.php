@@ -40,8 +40,13 @@ class TortyuzmController extends Controller
             'family_name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\-\']+$/u'],
             'middle_name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\-\']+$/u'],
             'orientation' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\-\']+$/u'],
+            'gender' => ['required', 'string', 'in:male,female'], // Jinsi majburiy
             'group' => 'required|string|max:50',
-            'result' => 'required|numeric|min:0.01',
+            'result' => [
+                'required',
+                'string',
+                'regex:/^[0-9.,]+$/',
+            ],
         ]);
 
         // Xabar yuboriladigan ma'lumotlar
@@ -78,8 +83,13 @@ class TortyuzmController extends Controller
             'family_name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\-\']+$/u'],
             'middle_name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\-\']+$/u'],
             'orientation' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\-\']+$/u'],
+            'gender' => ['required', 'string', 'in:male,female'], // Jinsi majburiy
             'group' => 'required|string|max:50',
-            'result' => 'required|numeric|min:0.01',
+            'result' => [
+                'required',
+                'regex:/^[0-9.,]+$/', // Faqat raqam va nuqtalarni ruxsat beradi
+                'min:0.01'
+            ],
         ]);
 
         $tortyuzm = Tortyuzmmodel::find($id);
@@ -87,6 +97,7 @@ class TortyuzmController extends Controller
         $tortyuzm->family_name = $request->family_name;
         $tortyuzm->middle_name = $request->middle_name;
         $tortyuzm->orientation = $request->orientation;
+        $tortyuzm->gender = $request->gender; // gender maydonini yangilash
         $tortyuzm->group = $request->group;
         $tortyuzm->result = $request->result;
         $tortyuzm->save();

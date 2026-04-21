@@ -13,6 +13,7 @@ class BalandlikkasakrashModel extends Model
         'family_name',
         'middle_name',
         'orientation',
+        'gender',
         'group',
         'result',
     ];

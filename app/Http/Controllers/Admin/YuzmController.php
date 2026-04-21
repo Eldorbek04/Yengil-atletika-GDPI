@@ -9,13 +9,13 @@ use Illuminate\Http\Request;
 class YuzmController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Natijalar ro'yxatini ko'rsatish (eng yaxshi natija bo'yicha saralangan).
      */
     public function index()
     {
         $perPage = 10;
         $yuzm = yuzmmodel::query()
-            ->orderBy('result', 'asc')
+            ->orderBy('result', 'asc') // Eng kichik vaqt - eng yaxshi natija
             ->orderBy('id', 'asc')
             ->paginate($perPage);
 
@@ -23,7 +23,7 @@ class YuzmController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Yangi natija qo'shish sahifasi.
      */
     public function create()
     {
@@ -31,7 +31,7 @@ class YuzmController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Yangi natijani saqlash.
      */
     public function store(Request $request)
     {
@@ -40,19 +40,24 @@ class YuzmController extends Controller
             'family_name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\-\']+$/u'],
             'middle_name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\-\']+$/u'],
             'orientation' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\-\']+$/u'],
+            'gender' => ['required', 'string', 'in:male,female'], // Jinsi majburiy
             'group' => 'required|string|max:50',
-            'result' => 'required|numeric|min:0.01',
+            'result' => [
+                'required',
+                'string',
+                'regex:/^[0-9.,]+$/',
+            ],
         ]);
 
-        // Xabar yuboriladigan ma'lumotlar
-        $requestData = $validatedData;
-        // Ma'lumotlarni saqlash
         yuzmmodel::create($validatedData);
-        return redirect()->route('admin.yuzm.index')->with('success', "Natija muvaffaqiyatli saqlandi.");
+
+        return redirect()
+            ->route('admin.yuzm.index')
+            ->with('success', "Natija muvaffaqiyatli saqlandi.");
     }
 
     /**
-     * Display the specified resource.
+     * Natijani ko'rish (agar kerak bo'lsa).
      */
     public function show(string $id)
     {
@@ -60,48 +65,49 @@ class YuzmController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Tahrirlash sahifasiga o'tish.
      */
     public function edit(string $id)
     {
-        $yuzm = yuzmmodel::find($id);
+        $yuzm = yuzmmodel::findOrFail($id);
         return view('admin.yuzm.edit', compact('yuzm'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Mavjud natijani yangilash.
      */
     public function update(Request $request, string $id)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\-\']+$/u'],
             'family_name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\-\']+$/u'],
             'middle_name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\-\']+$/u'],
             'orientation' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\-\']+$/u'],
+            'gender' => ['required', 'string', 'in:male,female'], // Update'da ham gender qo'shildi
             'group' => 'required|string|max:50',
-            'result' => 'required|numeric|min:0.01',
+            'result' => [
+                'required',
+                'string',
+                'regex:/^[0-9.,]+$/',
+            ],
         ]);
 
-        $yuzm = yuzmmodel::find($id);
-        $yuzm->name = $request->name;
-        $yuzm->family_name = $request->family_name;
-        $yuzm->middle_name = $request->middle_name;
-        $yuzm->orientation = $request->orientation;
-        $yuzm->group = $request->group;
-        $yuzm->result = $request->result;
-        $yuzm->save();
+        $yuzm = yuzmmodel::findOrFail($id);
+        $yuzm->update($validatedData); // Barcha ma'lumotlarni bittada yangilash
 
-        // teammembers::create($requestData);
-        return redirect()->route('admin.yuzm.index')->with('success', "Natija muvaffaqiyatli o'zgartirildi.");
+        return redirect()
+            ->route('admin.yuzm.index')
+            ->with('success', "Natija muvaffaqiyatli o'zgartirildi.");
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Natijani o'chirish.
      */
     public function destroy(string $id)
     {
-        $message = yuzmmodel::findOrFail($id);
-        $message->delete();
-        return redirect()->back()->with('success', 'Natija muvaffaqiyatli O\'chirildi.');
+        $yuzm = yuzmmodel::findOrFail($id);
+        $yuzm->delete();
+
+        return redirect()->back()->with('success', 'Natija muvaffaqiyatli o\'chirildi.');
     }
 }

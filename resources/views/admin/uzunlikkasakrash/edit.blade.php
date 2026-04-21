@@ -79,6 +79,17 @@
                 <input name="result" id="result" type="text" placeholder="Natijani kiriting" required value="{{ $uzunlikkasakrash->result }}">
             </div>
 
+             {{-- Jinsi --}}
+             <div class="form-group">
+                <label for="gender">Jinsi:
+                    @error('gender') <span style="color: red;">Jinsini tanlang</span> @enderror
+                </label>
+                <select name="gender" id="gender" class="form-control" required>
+                    <option value="male" {{ old('gender', $uzunlikkasakrash->gender) == 'male' ? 'selected' : '' }}>O'g'il bola</option>
+                    <option value="female" {{ old('gender', $uzunlikkasakrash->gender) == 'female' ? 'selected' : '' }}>Qiz bola</option>
+                </select>
+            </div>
+
             <button type="submit" class="btn-submit">Natijani Qo'shish</button>
         </form>
     </section>

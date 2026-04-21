@@ -19,6 +19,9 @@
 
             <div class="show_res">
                 <h2>800M Natijalar Ro'yxati</h2>
+                <div class="search-box">
+                    <input type="text" id="admin-search" placeholder="Ism yoki familiya bo'yicha qidiruv...">
+                </div>
                 <a class="btn-add-new" href="{{ route('admin.sakkizyuzm.create') }}">Qo'shish</a>
             </div>
             <div class="table-responsive">
@@ -31,6 +34,7 @@
                             <th>Otasining ismi</th>
                             <th>Yo'nalish</th>
                             <th>Guruh</th>
+                            <th>Jinsi</th>
                             <th>Natija</th>
                             <th>Harakatlar</th>
                         </tr>
@@ -50,6 +54,10 @@
                                 <td data-label="Yo'nalish">{{ $sakkizyuzms->orientation }}</td>
 
                                 <td data-label="Guruh">{{ $sakkizyuzms->group }}</td>
+
+                                <td data-label="Jinsi">
+                                    {{ $sakkizyuzms->gender == 'male' ? "O'g'il bola" : "Qiz bola" }}
+                                </td>
 
                                 <td data-label="Natija">{{ $sakkizyuzms->result }}</td>
 
